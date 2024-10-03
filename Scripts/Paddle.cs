@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
+    //SteamVR_Action_Vibration pulse;
     private Vector3 oldpos;
     private Vector3 velocity;
     private Queue<Vector3> sampledVelocities = new Queue<Vector3>();

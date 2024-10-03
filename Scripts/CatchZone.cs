@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VolumetricLines;
+using static SteamVR_Utils;
+using static UnityEngine.UI.Image;
 
 public class CatchZone : MonoBehaviour
 {
@@ -50,12 +52,21 @@ public class CatchZone : MonoBehaviour
         {
             if (BeamControl && paddle.caught != null && paddleOther.caught != null)
             {
-                if (paddle.caught.GetComponent<Projectile>().isEnergyWeapon() &&
-                    paddleOther.caught.GetComponent<Projectile>().isEnergyWeapon())
+                GameObject ownProj = paddle.caught;
+                GameObject otherProj = paddleOther.caught;
+                if (ownProj.GetComponent<Projectile>().isEnergyWeapon() &&
+                    otherProj.GetComponent<Projectile>().isEnergyWeapon())
                 {
-                    beamActive = true;
-                    beamOrigin.SetActive(true);
-                    StartCoroutine(beamTimer(4.0f));
+                    if (ownProj.GetComponent<energyWeapon>().isSelector())
+                    {
+                        GameObject.FindObjectOfType<GameState>().gameStart();
+                    }
+                    else
+                    {
+                        beamActive = true;
+                        beamOrigin.SetActive(true);
+                        StartCoroutine(beamTimer(4.0f));
+                    }
                 }
             }
         }

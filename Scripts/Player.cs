@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
         Collider[] hits = Physics.OverlapCapsule(transform.position, feetPos, 0.01f);
         if (hits.Length > 0)
         {
+            Debug.Log(hits.Length);
+            Debug.Log(hits);
             Collider dmgCollider = Array.Find(hits, 
                 coll => coll.gameObject.CompareTag("projectile") && !coll.gameObject.GetComponent<Projectile>().isCaught());
             if (dmgCollider!= null)
@@ -48,7 +50,12 @@ public class Player : MonoBehaviour
                 SteamVR_Fade.Start(painColor, 0.2f);
                 StartCoroutine(fade(0.3f));
                 StartCoroutine(invincibleFrames(0.6f));
+                Debug.Log("pain");
             }
+        }
+        else
+        {
+            Debug.Log("invincible frame");
         }
     }
 
@@ -83,6 +90,7 @@ public class Player : MonoBehaviour
     {
         SteamVR_Fade.Start(Color.black, 0.5f);
         StartCoroutine(dieAfterWait(0.5f));
+        
     }
 
 
