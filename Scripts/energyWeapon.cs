@@ -6,11 +6,15 @@ public class energyWeapon : MonoBehaviour
 {
     public Vector3? target;
     public float speed;
+    public bool selector;
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 aim = GameObject.FindObjectOfType<Player>().transform.position;
-        target = (aim - transform.position) * 200;
+        if (!selector)
+        {
+            Vector3 aim = GameObject.FindObjectOfType<Player>().transform.position;
+            target = (aim - transform.position) * 200;
+        }
     }
 
     // Update is called once per frame
@@ -32,5 +36,10 @@ public class energyWeapon : MonoBehaviour
     public void unsetTarget()
     {
         this.target = null;
+    }
+
+    public bool isSelector()
+    {
+        return this.selector;
     }
 }

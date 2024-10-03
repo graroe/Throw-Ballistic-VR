@@ -104,6 +104,7 @@ public class Enemy : MonoBehaviour
             {
                 transform.position += Vector3.Cross(transform.forward, transform.up).normalized * Time.deltaTime * movementSpeed;
                 canAttack = false;
+                Debug.Log("in the way");
             }
             else
             {
@@ -147,6 +148,7 @@ public class Enemy : MonoBehaviour
 
         return result;
     }
+
 
     void meleeAttack()
     {
